@@ -16,7 +16,7 @@ function Register(){
     $this->load->helper(array('form', 'url'));
 
     //Validation Rules
-    $this->form_validation->set_rules('full_name','Full Name','trim|required');
+    $this->form_validation->set_rules('full_name','Full Name','trim|required|xss_clean|alpha');
     $this->form_validation->set_rules('email','Email Address','trim|required|valid_email');
     $this->form_validation->set_rules('company','Company','trim|required');
     $this->form_validation->set_rules('user_name','Username','trim|required|min_length[4]');
@@ -75,21 +75,9 @@ function validate(){
             'is_logged_in' => true
         );
         $this->session->set_userdata($data);
-        if($des=='ceo'){
-                print_r("ceo");
-                die();
-//        redirect('');
-            
-        }else if($des=='dev'){
-//        redirect('');
-                print_r("dev");
-                die();
-        }else{
-//        redirect('');
-                print_r("pm");
-                die();
-        }
-    }else{
+        redirect('DashBoardController/index/'.$user);
+    }
+    else{
         $data['validate']="Username or password incorrect. Please try again";
         $this->load->view('loginform',$data);
     }

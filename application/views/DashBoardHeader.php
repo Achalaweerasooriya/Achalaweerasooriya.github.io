@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,19 +9,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>DashBoard</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<php echo base_url(); ?>_include/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(''); ?>_include/Dashboard/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="<php echo base_url(); ?>_include/css/sb-admin.css" rel="stylesheet">
+    <link href="<?php echo base_url(''); ?>_include/Dashboard/css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="<php echo base_url(); ?>_include/css/plugins/morris.css" rel="stylesheet">
+    <link href="<?php echo base_url(''); ?>_include/Dashboard/css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<php echo base_url(); ?>_include/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(''); ?>_include/Dashboard/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="index.html"><?php echo "Welcome ". $username ?></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
