@@ -16,7 +16,7 @@ function Register(){
     $this->load->helper(array('form', 'url'));
 
     //Validation Rules
-    $this->form_validation->set_rules('full_name','Full Name','trim|required|xss_clean|alpha');
+    $this->form_validation->set_rules('full_name','Full Name','trim|required|alpha');
     $this->form_validation->set_rules('email','Email Address','trim|required|valid_email');
     $this->form_validation->set_rules('company','Company','trim|required');
     $this->form_validation->set_rules('user_name','Username','trim|required|min_length[4]');
