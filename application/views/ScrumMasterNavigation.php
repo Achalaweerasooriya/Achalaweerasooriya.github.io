@@ -5,9 +5,6 @@
                         <a href="PM.html"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                     <li>
-                        <a href="projects.html"><i class="fa fa-fw fa-bar-chart-o"></i> Projects</a>
-                    </li>
-                    <li>
                         <a href="#"><i class="fa fa-fw fa-table"></i> Schedule</a>
                     </li>
                     <li>
@@ -20,7 +17,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Projects</a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">New</a>
+                                <a href="<?php echo base_url(''); ?>DashBoardController/ScrumMasterViewProjects/new">Queue</a>
                             </li>
                             <li>
                                 <a href="#">In-Progress</a>

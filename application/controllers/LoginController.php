@@ -1,22 +1,29 @@
 <?php
 class LoginController extends CI_Controller{
-function index(){
-//    $this->load->view('header');
+	    public function __construct()
+       {
+            parent::__construct();
+				
+       }
+	
+public function index(){
+	$this->load->helper('form');
+    $this->load->view('header');
     $data['validate']="";
     $this->load->view('loginform',$data);
-//    $this->load->view('footer');
+ //  $this->load->view('footer');
 }
 
-function SignUp(){
+public function SignUp(){
     $this->load->view('SignUp');
 }
 
-function Register(){
+public function Register(){
     $this->load->library('form_validation');
     $this->load->helper(array('form', 'url'));
 
     //Validation Rules
-    $this->form_validation->set_rules('full_name','Full Name','trim|required|xss_clean|alpha');
+    $this->form_validation->set_rules('full_name','Full Name','trim|required|alpha');
     $this->form_validation->set_rules('email','Email Address','trim|required|valid_email');
     $this->form_validation->set_rules('company','Company','trim|required');
     $this->form_validation->set_rules('user_name','Username','trim|required|min_length[4]');
@@ -39,7 +46,7 @@ function Register(){
 }
 
 //custom callback function
-function check_mail_Exists($email){
+public function check_mail_Exists($email){
     $this->load->model('MembershipModel');
     $email_available=$this->model->check_mail_Exists($email);
     if($email_available){
@@ -49,7 +56,7 @@ function check_mail_Exists($email){
     }
 }
 
-function check_user_Exists($email){
+public function check_user_Exists($email){
     $this->load->model('MembershipModel');
     $username_available=$this->model->check_user_Exists($email);
     if($username_available){
@@ -59,7 +66,7 @@ function check_user_Exists($email){
     }
 }
 
-function validate(){
+public function validate(){
 
     $this->load->model('MembershipModel');
         $user=$this->input->post('user_name');
