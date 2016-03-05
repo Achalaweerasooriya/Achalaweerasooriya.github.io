@@ -1,14 +1,19 @@
 <?php
 
-class DashBoardController extends CI_Controller{
+class DashBoardController extends CI_Controller
+{
+    //class variables to store user name and designation
     var $username;
     var $designation;
+    
+    //Load dashboard of the user
     function index($name)
     {
         $this->DashBoardMainView($name);
         $this->load->view('DashboardBody');
     }
     
+    //view the dynamic part of the dashboard
     function DashBoardMainView($name)
     {
         $this->load->model('MembershipModel');
@@ -17,20 +22,29 @@ class DashBoardController extends CI_Controller{
         $this->username=$name;
         $this->designation=$des;
         $this->load->view('DashBoardHeader',$data);
-        if($des=='ceo'){
+        
+        //load view as per the designation
+        if($des=='ceo')
+        {
             $this->load->view('ManagerNavigation');
-        }else if ($des=='pm'){
+        }
+        else if ($des=='pm')
+        {
            $this->load->view('PMNavigation');
         }
-         else if($des=='scrum'){
+         else if($des=='scrum')
+        {
            $this->load->view('ScrumMasterNavigation');  
-         }
-        else {
+        }
+        else 
+        {
            $this->load->view('DeveloperNavigation'); 
         }
     }
     
-        function redirectToPages($page)
+    
+    //Redirect to pages
+    function redirectToPages($page)
     {
         $this->username=$this->session->userdata('username');
         $this->DashBoardMainView($this->username);
@@ -41,8 +55,9 @@ class DashBoardController extends CI_Controller{
     }
     
     
-    //Managers functions
+    //----Managers functions
     
+    //1. View Projects
     function ManagerProjects()
     {
         $this->load->model('ViewProjectsModel');
@@ -57,8 +72,9 @@ class DashBoardController extends CI_Controller{
     
 
     
-    //PM functions
+    //----PM functions
     
+    //1. View Projects
     function PMViewProjects()
     {
         $this->load->model('ViewProjectsModel');
@@ -68,8 +84,9 @@ class DashBoardController extends CI_Controller{
         $this->load->view('PMViewProjects',$data);
     }
     
-    //Scrum Master functions
+    //----Scrum Master functions
     
+    //1.View Projects
     function ScrumMasterViewProjects($status)
     {
         $this->load->model('ViewProjectsModel');
