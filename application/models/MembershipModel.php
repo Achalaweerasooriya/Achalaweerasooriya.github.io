@@ -1,7 +1,10 @@
 <?php
 
-class MembershipModel extends CI_Model{
-    function validate($user,$pass){
+class MembershipModel extends CI_Model
+{
+    //Validate user
+    function validate($user,$pass)
+    {
         $passw=md5($pass);
         $this -> db -> select('user_name, pwd');
         $this -> db -> from('user');
@@ -9,16 +12,23 @@ class MembershipModel extends CI_Model{
         $this->db->where('pwd',$passw);
         $query=$this->db->get();
 
-        if($query->num_rows()==1){
+        //Check for query number
+        if($query->num_rows()==1)
+        {
             return true;
-        }else{
+        }
+        else
+        {
             return false;
         }
     }
     
-    function create_member(){
+    //Create a new member on the database
+    function create_member()
+    {
         $username=$this->input->post('user_name');
         
+        //passing a array to the database
         $new_member=array(
             'full_name' => $this->input->post('full_name'),
             'email' => $this->input->post('email'),
@@ -32,29 +42,44 @@ class MembershipModel extends CI_Model{
         return $insert;
     }
     
-    function check_mail_Exists($email){
+    //Model of the call back function for mail exists
+    function check_mail_Exists($email)
+    {
         $this->db->where('email',$email);
         $result=$this->db->get('user');
         
-        if($result->num_rows>0){
+        //check for return query
+        if($result->num_rows>0)
+        {
             return false;
-        }else{
+        }
+        else
+        {
             return true;
         }
     }
     
-        function check_user_Exists($username){
+     //Model of the call back function for user exists
+    function check_user_Exists($username)
+    {
         $this->db->where('user_name',$username);
         $result=$this->db->get('user');
         
-        if($result->num_rows>0){
+        //Check for return query
+        if($result->num_rows>0)
+        {
             return false;
-        }else{
+        }
+        else
+        {
             return true;
         }
     }
     
-    function getdes($user){
+    
+    //Get the designation of a perticular user from the database
+    function getdes($user)
+    {
         $this->db->select('designation');
         $this->db->where('user_name',$user);
         $this->db->from('user');
