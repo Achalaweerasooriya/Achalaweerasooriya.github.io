@@ -1,27 +1,30 @@
 <?php
 
-class ViewProjectsModel extends CI_Model{
+class ViewProjectsModel extends CI_Model
+{
+    //Class variables for the username and designation
     var $username;
     var $designation;
     
+    //set values for username and designation
     function index()
     {
         $this->load->controller('DashBoardController');
         $this->username=$this->DashBoardController->username;
-        $this->designation=$this->DashBoardController->designation;
-        
-        
+        $this->designation=$this->DashBoardController->designation;   
     }
     
+    //Managers project view funtion returning relevent tables for the status argument
     function ManagerViewProjects($status)
     {
         $this->db->select('*');
         $this->db->from('project');
-        $this->db->where('status',$status);
         $query=$this->db->get();
         return $query;
     }
     
+    
+    //Project managers view project function
     function PMViewProjects()
     {
         $this->db->select('project_id');
@@ -35,6 +38,8 @@ class ViewProjectsModel extends CI_Model{
         return $query;
     }
     
+    
+    //Scrum masters view project function returns table for the status in the argumnet
     function ScrumMasterViewProjects($status)
     {
         $this->username=$this->session->username;
@@ -46,7 +51,6 @@ class ViewProjectsModel extends CI_Model{
         $this->db->select('*');
         $this->db->from('project');
         $this->db->where('team_id',$teamid);
-        $this->db->where('status',$status);
         $query=$this->db->get();
         
         return $query;
