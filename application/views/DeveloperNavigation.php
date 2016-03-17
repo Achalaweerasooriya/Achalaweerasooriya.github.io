@@ -11,7 +11,7 @@
                         <a href="#"><i class="fa fa-fw fa-table"></i> Schedule</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-edit"></i>Assigned Tasks</a></li>
+                        <a href="<?php echo base_url(''); ?>ManageTask_Controller/index"><i class="fa fa-fw fa-edit"></i>Assigned Tasks</a></li>
                 
                     <li>
                         <a href="#"><i class="fa fa-fw fa-wrench"></i> Send Message to The Team</a>
