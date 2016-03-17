@@ -25,6 +25,15 @@
                             <li>
                                 <a href="#">View Project</a>
                             </li>
+                            <li>
+                                <a href="<?php echo base_url(''); ?>AddSprint_Controller/index">Add New Sprint</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url(''); ?>SearchTask_Controller/index">Search Tasks by Sprint Id</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url(''); ?>SearchEmp_Controller/index">Search Tasks by User Id</a>
+                            </li>
                         </ul>
                     </li>
                     <li>

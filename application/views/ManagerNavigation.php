@@ -28,7 +28,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="Create project.html"><i class="fa fa-fw fa-bar-chart-o"></i> Create Project</a>
+                        <a href="<?php echo base_url(''); ?>ManageUser_Controller/view_users"><i class="fa fa-fw fa-bar-chart-o"></i> View Users</a>
                     </li>
                     <li>
                         <a href="Create team.html"><i class="fa fa-fw fa-table"></i> Create Team</a>

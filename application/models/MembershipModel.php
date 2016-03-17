@@ -31,7 +31,7 @@ class MembershipModel extends CI_Model
         //passing a array to the database
         $new_member=array(
             'full_name' => $this->input->post('full_name'),
-            'e-mail' => $this->input->post('email'),
+            'email' => $this->input->post('email'),
             'company' => $this->input->post('company'),
             'user_name' => $this->input->post('user_name'),
             'pwd' => md5($this->input->post('password')),
@@ -45,7 +45,7 @@ class MembershipModel extends CI_Model
     //Model of the call back function for mail exists
     function check_mail_Exists($email)
     {
-        $this->db->where('e-mail',$email);
+        $this->db->where('email',$email);
         $result=$this->db->get('user');
         
         //check for return query

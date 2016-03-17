@@ -96,4 +96,34 @@ class DashBoardController extends CI_Controller
         $this->load->view('ScrumMasterViewProjects',$data);
     }
     
+    function ViewTask()
+    {
+        $this->load->model('User_Model');
+        $new=$this->User_Model->get_all('new');
+        
+        $data=array('new'=>$new);
+        $this->username=$this->session->userdata('username');
+        $this->DashBoardMainView($this->username);
+        $this->load->view('Task',$data);
+    }
+//    function ViewUser()
+//    {
+//        $this->load->model('User_Model');
+//        $users=$this->User_Model->get_all('new');
+//        
+//        $data=array('new'=>$users);
+//        $this->username=$this->session->userdata('username');
+//        $this->DashBoardMainView($this->username);
+//        $this->load->view('users',$data);
+//    }
+        function ViewUser()
+
+    {
+        $this->load->model('User_Model');
+        $this->username=$this->session->userdata('username');
+        $data['users']=$this->User_model->get_all();
+        $this->DashBoardMainView($this->username);
+        $this->load->view('users', $this->data);
+    }
+    
 }
