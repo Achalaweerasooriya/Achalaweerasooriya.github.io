@@ -19,7 +19,6 @@ class ViewProjectsModel extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('project');
-        $this->db->where('status',$status);
         $query=$this->db->get();
         return $query;
     }
@@ -52,7 +51,6 @@ class ViewProjectsModel extends CI_Model
         $this->db->select('*');
         $this->db->from('project');
         $this->db->where('team_id',$teamid);
-        $this->db->where('status',$status);
         $query=$this->db->get();
         
         return $query;
