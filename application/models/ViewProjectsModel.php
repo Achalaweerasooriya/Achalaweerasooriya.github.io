@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class ViewProjectsModel extends CI_Model
 {

@@ -9,8 +9,8 @@ class DashBoardController extends CI_Controller
     //Load dashboard of the user
     function index($name)
     {
+       $this->load->view('DashboardBody');
         $this->DashBoardMainView($name);
-        $this->load->view('DashboardBody');
     }
     
     //view the dynamic part of the dashboard
@@ -39,7 +39,7 @@ class DashBoardController extends CI_Controller
         else 
         {
            $this->load->view('DeveloperNavigation'); 
-        }
+        }       
     }
     
     
@@ -96,8 +96,8 @@ class DashBoardController extends CI_Controller
         $this->load->view('ScrumMasterViewProjects',$data);
     }
     
-    function ViewTask()
-    {
+        function ViewTask()
+        {
         $this->load->model('User_Model');
         $new=$this->User_Model->get_all('new');
         
@@ -105,25 +105,14 @@ class DashBoardController extends CI_Controller
         $this->username=$this->session->userdata('username');
         $this->DashBoardMainView($this->username);
         $this->load->view('Task',$data);
-    }
-//    function ViewUser()
-//    {
-//        $this->load->model('User_Model');
-//        $users=$this->User_Model->get_all('new');
-//        
-//        $data=array('new'=>$users);
-//        $this->username=$this->session->userdata('username');
-//        $this->DashBoardMainView($this->username);
-//        $this->load->view('users',$data);
-//    }
+        }
         function ViewUser()
-
-    {
+        {
         $this->load->model('User_Model');
         $this->username=$this->session->userdata('username');
         $data['users']=$this->User_model->get_all();
         $this->DashBoardMainView($this->username);
         $this->load->view('users', $this->data);
-    }
+        }
     
 }

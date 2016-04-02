@@ -67,10 +67,7 @@ class LoginController extends CI_Controller
         }
     }
     
-}
 
-    }
-}
 
 
     //custom callback function to check if user exists
@@ -88,7 +85,7 @@ class LoginController extends CI_Controller
             return false;
         }
     }
-}
+
 
     //validation function
     function validate()
@@ -122,5 +119,4 @@ class LoginController extends CI_Controller
         $this->session->sess_destroy();
         redirect('LoginController/index');
     }
-}
 }
