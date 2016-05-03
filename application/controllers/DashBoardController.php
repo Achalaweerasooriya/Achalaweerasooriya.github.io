@@ -37,6 +37,10 @@ class DashBoardController extends CI_Controller
         {
            $this->load->view('ScrumMasterNavigation');  
         }
+        else if($des=='client')
+        {
+            $this->load->view('ClientNavigation');  
+        }
         else 
         {
            $this->load->view('DeveloperNavigation'); 

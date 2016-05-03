@@ -32,11 +32,11 @@
     <![endif]-->
     
 </head>
-
 <body>
-    <div id="wrapper">
+    <nav>
         
-        
+        <div id="wrapper">
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -145,7 +145,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="<?php echo base_url(''); ?>LoginController/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                           <a href="<?php echo base_url(''); ?>LoginController/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -153,157 +153,84 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="<?php echo base_url(''); ?>DashBoardController/redirectToPages/home"><i class="fa fa-fw fa-dashboard"></i> Home</a>
+                                        <li class="active">
+                        <a href="<?php echo base_url(''); ?>Client"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(''); ?>DashBoardController/PMViewProjects"><i class="fa fa-fw fa-bar-chart-o"></i> On-Going Projects</a>
+                        <a href="projects.html"><i class="fa fa-fw fa-bar-chart-o"></i> BackLog</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-table"></i> Projects BackLog</a>
+                        <a href="#"><i class="fa fa-fw fa-table"></i> Schedule</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-edit"></i>Developer Teams</a></li>
-                
+                        <a href="#"><i class="fa fa-fw fa-edit"></i>Contact Project Manager</a></li>
                     <li>
-                        <a href="<?php echo base_url(''); ?>createproject"><i class="fa fa-fw fa-wrench"></i> Create Project</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Project Profile</a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Project Documents</a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">Client Details</a>
+                                <a href="#">System Requirement Spesification</a>
                             </li>
                             <li>
-                                <a href="#">View Project</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(''); ?>AddSprint_Controller/index">Add New Sprint</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(''); ?>SearchTask_Controller/index">Search Tasks by Sprint Id</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(''); ?>SearchEmp_Controller/index">Search Tasks by User Id</a>
+                                <a href="#">Final Documentation</a>
                             </li>
                         </ul>
                     </li>
-                    
-                    <li>
-                        <a href="<?php echo base_url(''); ?>createTeam"><i class="fa fa-fw fa-table"></i> Create Team</a>
-                    </li>
-                    <li>
-                        <a href="Create team.html"><i class="fa fa-fw fa-table"></i> Profile</a>
-                    </li>
+               
                 </ul>
+                
+                
             </div>
+            
             <!-- /.navbar-collapse -->
         </nav>
-
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        
-                    </div>
+    
+        <div class="col-lg-12">
+            <h2>Projects</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                        
+                                <th>Project Name</th>
+                                <th width="100">Start Date</th>
+                                <th width="100">Deadline</th>
+                                <th>Status</th>
+                                <th width="200">Progress</th>
+                                <th></th>
+                                        
+                            </tr>
+                        </thead>
+                                
+                        <tbody>
+                            <?php foreach($projects as $pro): 
+                                $project_id = $pro['project_id'];
+                            ?>
+                                    
+                            <tr>
+                                        
+                                <td><?php echo $pro['name']?></td>
+                                <td><?php echo $pro['start_date']?></td>
+                                <td><?php echo $pro['deadline']?></td>
+                                <td><?php echo $pro['status']?></td>
+                                <td>
+                                    <div class="progress">
+                                        <div id="progress-bar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"  style="width:<?php echo $pro['project_progress']?>%"><b><font color="black" size="3"><?php echo $pro['project_progress']?>%</b>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><button type="submit" class="btn btn-default" onclick="window.location.href='<?php echo base_url()?>client/view/<?php echo $project_id ?>'">View</button></td>
+                            
+                            </tr>
+                            
+                            <?php endforeach; ?>
+                                    
+                        </tbody>
+                    </table>
                 </div>
-                <!-- /.row -->
-                
-                <!-- /.row -->
-                <div class="col-sm-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">Create Project</div>
-                            <div class="panel-body">                                
-                              
-                                <?php echo form_open('CreateProject/add_project',['method'=>'post']); ?>
-                                
-                                <div class="form-group">
-                                    <label>Project Name</label><br/>
-                                        <?php echo form_input('name', set_value('name','')); ?>
-                                        <font color="#ff0000"><?php echo form_error('name'); ?></font>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Start Date</label><br/>
-                                        <input  type="date"  id="start_date"  name="start_date">
-                                        <font color="#ff0000"><?php echo form_error('start_date'); ?></font>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Deadline</label><br/>
-                                        <input  type="date"  id="deadline"  name="deadline">
-                                        <font color="#ff0000"><?php echo form_error('deadline'); ?></font>
-                                </div>
-                               
-                                <div class="form-group">
-                                    <label>Description</label>
-                                        <?php echo form_textarea('description', set_value('description','')); ?>
-                                        <font color="#ff0000"><?php echo form_error('description'); ?></font>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Languages</label><br/>
-                                        <?php
-                                  
-                                            $options = array(
-                                                'select'    => 'Select a language',
-                                                'C#'        => 'C#',
-                                                'Java'      => 'Java',
-                                                'PHP'       => 'PHP' 
-                                            );
-                                  
-                                            echo form_dropdown('language', $options);
-                                        ?>
-                                        <font color="#ff0000"><?php echo form_error('language'); ?></font>
-                                </div>
-                                                                  
-                                <div class="form-group">
-                                    <label>Framework</label><br/>
-                                        <?php
-                                  
-                                        $options = array(
-                                            'select'       => 'Select a framework',
-                                            '.NET'         => '.NET',
-                                            'Codeigniter'  => 'Codeigniter',
-                                            'Laravel'      => 'Laravel'
-                                        );
-                                  
-                                        echo form_dropdown('framework', $options);
-                                        ?>
-                                        <font color="#ff0000"><?php echo form_error('framework'); ?></font>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Client</label><br/>
-                                        <?php echo form_input('client', set_value('client',''));?>
-                                        <font color="#ff0000"><?php echo form_error('client');?></font>
-                                </div> 
-                                  
-                                 
-                            </div>
-                                
-                    </div>
-                                
-                    <?php echo form_submit('create','Create'); ?>
-                        
-                    <input type="reset" class="btn btn-primary"name="btnReset" id="btnReset" value="Reset" onclick="window.location.href='<?php echo base_url() ?>createproject'" />
-                                
-                    <?php echo form_close(); ?>
-                              
-                                
-                                
-                </div>
-            </div>
         </div>
-                
-        <div class="row">
-                  <!-- /#page-wrapper -->
-        <div></div>
         
-        </div>
-    <!-- /#wrapper -->
+        <div id="page-wrapper">
+        <div class="container-fluid">
 
     <!-- jQuery -->
     <script src="<?php echo base_url(); ?>_include/Dashboard/js/jquery.js"></script>
@@ -319,3 +246,7 @@
 </body>
 
 </html>
+
+
+
+

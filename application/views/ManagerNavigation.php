@@ -29,11 +29,12 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(''); ?>ManageUser_Controller/view_users"><i class="fa fa-fw fa-bar-chart-o"></i> View Users</a>
+                        <a href="<?php echo base_url(''); ?>CreateProject"><i class="fa fa-fw fa-wrench"></i>Create Project</a>
                     </li>
                     <li>
-                        <a href="Create team.html"><i class="fa fa-fw fa-table"></i> Create Team</a>
+                        <a href="<?php echo base_url(''); ?>ManageUser_Controller/view_users"><i class="fa fa-fw fa-bar-chart-o"></i> View Users</a>
                     </li>
+                    
                
                 </ul>
                 

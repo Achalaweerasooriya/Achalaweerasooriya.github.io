@@ -30,7 +30,31 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="js/progressbar.js"></script>
+    <script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+        
+            $('#progress input[type=radio]').change(function(){
+      
+                var progress = $(this).val();
+
+                var elem =document.getElementById("progress-bar");
+                elem.style.width = progress + '%';
+                
+                var $bar = $('.progress-bar');
+                $bar.text(progress + "%");
+            });
+
+        });
+        
+        $('#message1').toggleClass('in');
+    </script>
+
 </head>
 
 <body>
@@ -157,7 +181,7 @@
                         <a href="<?php echo base_url(''); ?>DashBoardController/redirectToPages/home"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(''); ?>DashBoardController/PMViewProjects"><i class="fa fa-fw fa-bar-chart-o"></i> On-Going Projects</a>
+                        <a href="<?php echo base_url(''); ?>project"><i class="fa fa-fw fa-bar-chart-o"></i> On-Going Projects</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-fw fa-table"></i> Projects BackLog</a>
@@ -211,93 +235,186 @@
                 </div>
                 <!-- /.row -->
                 
-                <!-- /.row -->
                 <div class="col-sm-4">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">Create Project</div>
-                            <div class="panel-body">                                
+                        <div class="panel-heading">Edit Project</div>
+                            <div class="panel-body">
+                                
+                                <?php $project_id = $pro['project_id']; ?>
                               
-                                <?php echo form_open('CreateProject/add_project',['method'=>'post']); ?>
+                                <?php echo form_open("Project/edit_project/$project_id");?>
+                                
+                                <div class="form-group">
+                                    <label>Project ID</label><br/>
+                                    <label><?php echo $project_id ?></label><br/>
+                                </div>
                                 
                                 <div class="form-group">
                                     <label>Project Name</label><br/>
-                                        <?php echo form_input('name', set_value('name','')); ?>
-                                        <font color="#ff0000"><?php echo form_error('name'); ?></font>
+                                    <?php echo form_input($name); ?>
+                                    <font color="#ff0000"><?php echo form_error('name'); ?></font>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Start Date</label><br/>
-                                        <input  type="date"  id="start_date"  name="start_date">
-                                        <font color="#ff0000"><?php echo form_error('start_date'); ?></font>
+                                    <?php echo form_input($start_date,'start_date'); ?>
+                                    <font color="#ff0000"><?php echo form_error('start_date'); ?></font>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Deadline</label><br/>
-                                        <input  type="date"  id="deadline"  name="deadline">
-                                        <font color="#ff0000"><?php echo form_error('deadline'); ?></font>
+                                    <?php echo form_input($deadline,'deadline'); ?>
+                                    <font color="#ff0000"><?php echo form_error('deadline'); ?></font>
                                 </div>
-                               
+                                
                                 <div class="form-group">
-                                    <label>Description</label>
-                                        <?php echo form_textarea('description', set_value('description','')); ?>
-                                        <font color="#ff0000"><?php echo form_error('description'); ?></font>
+                                    <label>Status</label><br/>
+                                    <?php
+                                    
+                                        $options = array(
+                                            'New'            =>'New',
+                                            'InProgress'     => 'InProgress',
+                                            'Completed'      => 'Completed'
+                                        );
+                                  
+                                        echo form_dropdown('status', $options,$status['value']);
+                                    ?>
+                                    <font color="#ff0000"><?php echo form_error('status'); ?></font>
+                                </div>
+                                                                 
+                                <div class="form-group">
+                                    <label>Description</label><br/>
+                                    <?php echo form_input($description); ?>
+                                    <font color="#ff0000"><?php echo form_error('description'); ?></font>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Languages</label><br/>
-                                        <?php
-                                  
-                                            $options = array(
-                                                'select'    => 'Select a language',
-                                                'C#'        => 'C#',
-                                                'Java'      => 'Java',
-                                                'PHP'       => 'PHP' 
-                                            );
-                                  
-                                            echo form_dropdown('language', $options);
-                                        ?>
-                                        <font color="#ff0000"><?php echo form_error('language'); ?></font>
+                                    <?php
+                                   
+                                        $options = array(
+                                            'C#'        => 'C#',
+                                            'Java'      => 'Java',
+                                            'PHP'       => 'PHP'
+                                        );
+                                        
+                                        echo form_dropdown('language', $options,$language['value']);
+                                    ?>
+                                    <font color="#ff0000"><?php echo form_error('language'); ?></font>
                                 </div>
-                                                                  
+                                
                                 <div class="form-group">
                                     <label>Framework</label><br/>
-                                        <?php
+                                    <?php
                                   
                                         $options = array(
-                                            'select'       => 'Select a framework',
                                             '.NET'         => '.NET',
                                             'Codeigniter'  => 'Codeigniter',
                                             'Laravel'      => 'Laravel'
                                         );
-                                  
-                                        echo form_dropdown('framework', $options);
-                                        ?>
-                                        <font color="#ff0000"><?php echo form_error('framework'); ?></font>
+                                        
+                                        echo form_dropdown('framework', $options,$framework['value']);
+                                    ?>
+                                    <font color="#ff0000"><?php echo form_error('framework');?></font>
                                 </div>
-                                
+              
                                 <div class="form-group">
                                     <label>Client</label><br/>
-                                        <?php echo form_input('client', set_value('client',''));?>
-                                        <font color="#ff0000"><?php echo form_error('client');?></font>
+                                    <?php echo form_input($client);?>
+                                    <font color="#ff0000"><?php echo form_error('client');?></font>
                                 </div> 
-                                  
-                                 
+                                
+                                
+                                
+                                <div class="form-group">
+                                    <label>Team ID</label><br/>
+                                    <label>
+                                        <?php 
+                                            if ($pro['team_id'] == 0) {
+                                                echo "Not Assigned";
+                                            } else {
+                                                echo $pro['team_id'];
+                                            }
+                                        ?>
+                                    </label><br/>
+                                </div>
+                                
+                            </div>
+                    </div>
+                    <?php echo form_submit('update','Update'); ?>
+                    <input type="reset" class="btn btn-primary"name="btnReset" id="btnReset" value="Reset" onclick="window.location.href='<?php echo current_url()?>'" />
+                    <input type="button" class="btn btn-primary"name="btnBack" id="btnBack" value="Back" onclick="window.location.href='<?php echo base_url() ?>Project'" />            
+                    
+                    
+                </div>
+                <div class="col-sm-7">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Project Progress</div>
+                            <div class="panel-body" id="progress">
+                                
+                                <?php 
+                                    for($i = 0;$i <= 100;$i+=10){
+                                        
+                                        if($i == 60){
+                                            ?>
+                                            <br>
+                                        <?php    
+                                        }
+                                        
+                                        if($project_progress['value']==$i){
+                                            $radio=array(
+                                            'name' => 'project_progress',
+                                            'id'   => 'project_progress',
+                                            'value' => $i,
+                                            'checked' => TRUE,
+                                            );
+                                            
+                                        ?>
+                                            <input type="radio" name="project_progress" class='progress' value='<?php  print $i?>' checked="true">
+                                            
+                                        <?php
+                                            
+                                        }else{
+                                            $radio=array(
+                                            'name' => 'project_progress',
+                                            'id'   => 'project_progress',
+                                            'value' => $i,
+                                            );
+                                        ?>
+                                            <input type="radio" name="project_progress" value='<?php  print $i?>'>
+                                            
+                                        <?php
+                                        }
+                                        
+                                        ?>
+                                            
+                                        <?php
+                                            $attribute=array(
+                                                'style' => 'margin:10px'
+                                            );
+                                            echo form_label($i."%","",$attribute);
+                                      
+                                        }
+                                        ?>
+                                            
+                                    <div class="progress">
+                                        <div id="progress-bar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"  style="width:<?php echo $project_progress['value']?>%"><b><font color="black" size="3"><?php echo $project_progress['value']?>%</b>
+                                        </div>
+                                    </div>
                             </div>
                                 
                     </div>
-                                
-                    <?php echo form_submit('create','Create'); ?>
                         
-                    <input type="reset" class="btn btn-primary"name="btnReset" id="btnReset" value="Reset" onclick="window.location.href='<?php echo base_url() ?>createproject'" />
+                </div>
+                
+                
                                 
                     <?php echo form_close(); ?>
-                              
-                                
-                                
-                </div>
+                
+            </div>
             </div>
         </div>
-                
+        
         <div class="row">
                   <!-- /#page-wrapper -->
         <div></div>
