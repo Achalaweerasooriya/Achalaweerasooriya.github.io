@@ -25,8 +25,10 @@
             }
         }
         
-           
-    //////////////////// Add Project //////////////////////////// 
+        /*
+        * Function for Adding new project 
+        */       
+     
         public function add_project()
                 
         {
@@ -63,7 +65,11 @@
             }
         }
     
-    /////////////////////////// Callback function for earlier dates /////////////////////////////////
+    /*
+    * Callback function for checking earlier dates in start date and deadline fields
+    * @return      bool  
+    */
+    
     // start date //    
         public function check_if_start_date_is_correct()
         {
@@ -87,8 +93,12 @@
                 return true;
             }
         }
-        
-    /////////////////////////// Callback function for prior deadline /////////////////////////////////
+    
+    /*
+    * Callback function for checking deadline field whether it is prior to start date
+    * @return      bool
+    */
+    
         public function check_if_deadline_is_before_start_date()
         {
             $this->load->model('CreateProjectModel');
@@ -99,8 +109,12 @@
                 return true;
             }
         }
-        
-    /////////////////////////// Callback function for language selection /////////////////////////////////        
+    
+    /*
+    * Callback function for checking whether a language is selected 
+    * @param       string  $str    Input string 
+    * @return      bool
+    */       
         public function check_if_language_selected($str)
         {
             $this->load->model('CreateProjectModel');
@@ -112,7 +126,11 @@
             }
         }
         
-    /////////////////////////// Callback function for framework selection /////////////////////////////////        
+    /*
+    * Callback function for checking whether a framework is selected 
+    * @param       string  $str    Input string 
+    * @return      bool
+    */       
         public function check_if_framework_selected($str)
         {
             $this->load->model('CreateProjectModel');

@@ -55,3 +55,9 @@ $route['translate_uri_dashes'] = FALSE;
 //$route['user/edit/(:any)'] = 'ManageUser_Controller/edit_user/$1';
 $route['user/delete/(:any)'] = 'ManageUser_Controller/delete_user/$1';
 
+$route['project/edit/(:any)'] = 'project/edit_project/$1';
+$route['team/view/(:any)'] = 'createteam/view_team/$1';
+$route['team/remove/(:any)/(:num)/(:num)'] = 'createteam/remove_member/$1/$2/$3';
+$route['team/add/(:any)/(:num)'] = 'createteam/add_member/$1/$2';
+
+$route['client/view/(:any)'] = 'client/view_project/$1';

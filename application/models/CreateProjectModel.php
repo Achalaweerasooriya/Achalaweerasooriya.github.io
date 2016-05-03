@@ -10,7 +10,10 @@
         public $deadline;
         
         
-    /////////////////////////// Add Project /////////////////////////////////
+    /*
+    * Function for Adding new project 
+    * @return      bool
+    */
         public function add_project()
         {
             
@@ -36,24 +39,22 @@
                 if(strcmp($des,'ceo') === 0){
                     $proj_man=$this->input->post('project_manager');
                     
-                    if($proj_man!=0){
-
                         $pm = array(
-                        'user_id'  => $proj_man,
-                        'project_id' =>  $project_id 
+                            'time'      => date('Y-m-d h:i:sa'),
+                            'user_id'   => $proj_man,
+                            'project_id'=>  $project_id 
                         );
                         
                         $query = $this->db->insert('projectmanager',$pm);
                         return $query;
-                    }
 
                 }else{
                     $this->load->model('CreateProjectModel');
                     $user_id=$this->CreateProjectModel->get_user_id($this->session->userdata('username'));
-
                     $pm = array(
-                    'user_id'  => $user_id[0]['user_id'] ,
-                    'project_id' => $project_id  
+                        'time'      => date('Y-m-d h:i:sa'),
+                        'user_id'   => $user_id[0]['user_id'] ,
+                        'project_id'=> $project_id  
                     );
                     
                     $query = $this->db->insert('projectmanager',$pm);
@@ -66,8 +67,13 @@
                 return false;
             }
         }
-        
-    /////////////////////////// Get Project Manager's ID /////////////////////////////////    
+    
+    /*
+    * Function for Getting Project Manager's ID
+    * @param       string  $user    Input string 
+    * @return      result array
+    */
+     
         public function get_user_id($user)
         {
             $this->db->select('user_id');
@@ -77,7 +83,11 @@
 
         }
         
-    /////////////////////////// Callback function for earlier dates /////////////////////////////////
+    /*
+    * Callback function for checking earlier dates in start date and deadline fields
+    * @return      bool  
+    */
+        
     // start date // 
         public function check_if_start_date_is_correct()
         {
@@ -106,7 +116,10 @@
             }
         }
         
-    /////////////////////////// Callback function for prior deadline /////////////////////////////////
+    /*
+    * Callback function for checking deadline field whether it is prior to start date
+    * @return      bool
+    */
         public function check_if_deadline_is_before_start_date()
         {
             $start = date('Y-m-d', strtotime($this->input->post('start_date')));
@@ -121,7 +134,11 @@
             }
         }
         
-    /////////////////////////// Callback function for language selection ///////////////////////////////// 
+    /*
+    * Callback function for checking whether a language is selected 
+    * @param       string  $str    Input string 
+    * @return      bool
+    */
         public function check_if_language_selected($str)
         {
         
@@ -134,7 +151,11 @@
             }
         }
         
-    /////////////////////////// Callback function for framework selection ///////////////////////////////// 
+    /*
+    * Callback function for checking whether a framework is selected 
+    * @param       string  $str    Input string 
+    * @return      bool
+    */
         public function check_if_framework_selected($str)
         {
         
@@ -146,8 +167,12 @@
                 return true;
             }
         }
-        
-    /////////////////////////// Load Project Managers to dropdown list /////////////////////////////////
+    
+    /*
+    * Function for Loading Project Managers to dropdown list  
+    * @return      result
+    */    
+    
         public function load_project_manager()
         {
             $this->db->select('user_id,user_name');
