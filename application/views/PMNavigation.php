@@ -28,9 +28,21 @@
                             <li>
                                 <a href="#">View Project</a>
                             </li>
+<<<<<<< HEAD
 							<li>
 								<a href="<?php echo base_url();?>projectManagerTasks/addU">Add User Stories To Projects</a>
 								</li>
+=======
+                            <li>
+                                <a href="<?php echo base_url(''); ?>AddSprint_Controller/index">Add New Sprint</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url(''); ?>SearchTask_Controller/index">Search Tasks by Sprint Id</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url(''); ?>SearchEmp_Controller/index">Search Tasks by User Id</a>
+                            </li>
+>>>>>>> 58b73cf64c0ba1ef7e6939291a9fbc4545cd09d3
                         </ul>
                     </li>
 					

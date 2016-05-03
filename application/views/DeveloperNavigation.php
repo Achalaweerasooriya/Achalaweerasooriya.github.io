@@ -2,16 +2,24 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
+<<<<<<< HEAD
                         <a href="<?php echo base_url();?>DashBoardController"><i class="fa fa-fw fa-dashboard"></i> Home</a>
+=======
+                        <a href="<?php echo base_url(''); ?>DashBoardController/redirectToPages/home"><i class="fa fa-fw fa-dashboard"></i> Home</a>
+>>>>>>> 58b73cf64c0ba1ef7e6939291a9fbc4545cd09d3
                     </li>
                     <li>
-                        <a href="projects.html"><i class="fa fa-fw fa-bar-chart-o"></i>Assigned Projects Queue</a>
+                        <a href="<?php echo base_url(''); ?>ManageTask_Controller/index"><i class="fa fa-fw fa-bar-chart-o"></i>Assigned Projects Queue</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-fw fa-table"></i> Schedule</a>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a href="<?php echo base_url();?>DashBoardController/developerViewTasks"><i class="fa fa-fw fa-edit"></i>Assigned Tasks</a></li>
+=======
+                        <a href="<?php echo base_url(''); ?>ManageTask_Controller/index"><i class="fa fa-fw fa-edit"></i>Assigned Tasks</a></li>
+>>>>>>> 58b73cf64c0ba1ef7e6939291a9fbc4545cd09d3
                 
                     <li>
                         <a href="#"> <a href="<?php echo base_url();?>DashBoardController/sendMessagetoTeam"><i class="fa fa-fw fa-wrench"></i> Send Message to The Team</a>

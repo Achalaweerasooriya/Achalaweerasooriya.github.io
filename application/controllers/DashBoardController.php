@@ -1,14 +1,25 @@
 <?php
 
+<<<<<<< HEAD
 class DashBoardController extends CI_Controller{
     var $username;
     var $designation;
+=======
+class DashBoardController extends CI_Controller
+{
+    //class variables to store user name and designation
+    var $username;
+    var $designation;
+    
+    //Load dashboard of the user
+>>>>>>> 58b73cf64c0ba1ef7e6939291a9fbc4545cd09d3
     function index($name)
     {
+       $this->load->view('DashboardBody');
         $this->DashBoardMainView($name);
-        $this->load->view('DashboardBody');
     }
     
+    //view the dynamic part of the dashboard
     function DashBoardMainView($name)
     {
         $this->load->model('MembershipModel');
@@ -17,19 +28,39 @@ class DashBoardController extends CI_Controller{
         $this->username=$name;
         $this->designation=$des;
         $this->load->view('DashBoardHeader',$data);
-        if($des=='ceo'){
+        
+        //load view as per the designation
+        if($des=='ceo')
+        {
             $this->load->view('ManagerNavigation');
-        }else if ($des=='pm'){
+        }
+        else if ($des=='pm')
+        {
            $this->load->view('PMNavigation');
         }
-         else if($des=='scrum'){
+         else if($des=='scrum')
+        {
            $this->load->view('ScrumMasterNavigation');  
-         }
-        else {
+        }
+        else 
+        {
            $this->load->view('DeveloperNavigation'); 
+        }       
+    }
+    
+    
+    //Redirect to pages
+    function redirectToPages($page)
+    {
+        $this->username=$this->session->userdata('username');
+        $this->DashBoardMainView($this->username);
+        if($page=='home')
+        {
+        $this->load->view('DashBoardBody');
         }
     }
     
+<<<<<<< HEAD
         function redirectToPages($page)
     {
         $this->username=$this->session->userdata('username');
@@ -42,7 +73,12 @@ class DashBoardController extends CI_Controller{
     
     
     //Managers functions
+=======
+>>>>>>> 58b73cf64c0ba1ef7e6939291a9fbc4545cd09d3
     
+    //----Managers functions
+    
+    //1. View Projects
     function ManagerProjects()
     {
         $this->load->model('ViewProjectsModel');
@@ -57,7 +93,48 @@ class DashBoardController extends CI_Controller{
     
 
     
-    //PM functions
+    //----PM functions
+    
+    //1. View Projects
+    function PMViewProjects()
+    {
+        $this->load->model('ViewProjectsModel');
+        $this->username=$this->session->userdata('username');
+        $data['projectsqueue']=$this->ViewProjectsModel->PMViewProjects();
+        $this->DashBoardMainView($this->username);
+        $this->load->view('PMViewProjects',$data);
+    }
+    
+    //----Scrum Master functions
+    
+    //1.View Projects
+    function ScrumMasterViewProjects($status)
+    {
+        $this->load->model('ViewProjectsModel');
+        $this->username=$this->session->userdata('username');
+        $data['projectsqueue']=$this->ViewProjectsModel->ScrumMasterViewProjects($status);
+        $this->DashBoardMainView($this->username);
+        $this->load->view('ScrumMasterViewProjects',$data);
+    }
+    
+        function ViewTask()
+        {
+        $this->load->model('User_Model');
+        $new=$this->User_Model->get_all('new');
+        
+        $data=array('new'=>$new);
+        $this->username=$this->session->userdata('username');
+        $this->DashBoardMainView($this->username);
+        $this->load->view('Task',$data);
+        }
+        function ViewUser()
+        {
+        $this->load->model('User_Model');
+        $this->username=$this->session->userdata('username');
+        $data['users']=$this->User_model->get_all();
+        $this->DashBoardMainView($this->username);
+        $this->load->view('users', $this->data);
+        }
     
     function PMViewProjects()
     {
