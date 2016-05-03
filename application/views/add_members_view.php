@@ -22,8 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="<?php echo base_url(); ?>_include/Dashboard/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-    <!--<link href=”views/admin/css/datepicker.css” rel=”stylesheet”>-->
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,12 +30,16 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
+<style>
+    #anchorTag{color:#000;}
+</style>
+
 </head>
 
 <body>
+
     <div id="wrapper">
-        
-        
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -190,13 +193,17 @@
                     </li>
                     
                     <li>
-                        <a href="<?php echo base_url(''); ?>createTeam"><i class="fa fa-fw fa-table"></i> Create Team</a>
+                        <a href="<?php echo base_url(''); ?>CreateTeam"><i class="fa fa-fw fa-table"></i> Create Team</a>
                     </li>
                     <li>
                         <a href="Create team.html"><i class="fa fa-fw fa-table"></i> Profile</a>
                     </li>
+               
                 </ul>
+                
+                
             </div>
+            
             <!-- /.navbar-collapse -->
         </nav>
 
@@ -210,99 +217,166 @@
                     </div>
                 </div>
                 <!-- /.row -->
-                
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                    </div>
+                </div>
+                <!-- /.row -->
+
+         
                 <!-- /.row -->
                 <div class="col-sm-4">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">Create Project</div>
-                            <div class="panel-body">                                
+                        <div class="panel-heading">Team</div>
+                            <div class="panel-body">
+                             
+                                <?php $team_id = $this->uri->segment(3);?>
                               
-                                <?php echo form_open('CreateProject/add_project',['method'=>'post']); ?>
+                                <?php echo form_open("CreateTeam/edit_team/$team_id",['method'=>'post']);?>                                
                                 
-                                <div class="form-group">
-                                    <label>Project Name</label><br/>
-                                        <?php echo form_input('name', set_value('name','')); ?>
-                                        <font color="#ff0000"><?php echo form_error('name'); ?></font>
-                                </div>
+                                    <div class="form-group">
+                                        <label>Team Name</label><br/>
+                                        <?php echo form_input($name); ?>
+                                    </div>
                                 
-                                <div class="form-group">
-                                    <label>Start Date</label><br/>
-                                        <input  type="date"  id="start_date"  name="start_date">
-                                        <font color="#ff0000"><?php echo form_error('start_date'); ?></font>
-                                </div>
+                                    <div class="form-group">
+                                        <label>No Of Members</label><br/>
+                                        <label><?php echo $member['no_of_members'] ?></label><br/>
+                                    </div>
                                 
-                                <div class="form-group">
-                                    <label>Deadline</label><br/>
-                                        <input  type="date"  id="deadline"  name="deadline">
-                                        <font color="#ff0000"><?php echo form_error('deadline'); ?></font>
-                                </div>
-                               
-                                <div class="form-group">
-                                    <label>Description</label>
-                                        <?php echo form_textarea('description', set_value('description','')); ?>
-                                        <font color="#ff0000"><?php echo form_error('description'); ?></font>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Languages</label><br/>
-                                        <?php
+                                    <div class="form-group">
+                                        <label>Project</label><br/>
                                   
-                                            $options = array(
-                                                'select'    => 'Select a language',
-                                                'C#'        => 'C#',
-                                                'Java'      => 'Java',
-                                                'PHP'       => 'PHP' 
-                                            );
-                                  
-                                            echo form_dropdown('language', $options);
+                                        <?php  
+                                             
+                                            $proj = array("Select Project");
+                                            foreach($project as $p){
+                                                $proj[$p->project_id]=$p->name;
+                                            }
+                                            echo form_dropdown('project', $proj, $project_id['project_id']);
+                                            
+                                            
                                         ?>
-                                        <font color="#ff0000"><?php echo form_error('language'); ?></font>
-                                </div>
-                                                                  
-                                <div class="form-group">
-                                    <label>Framework</label><br/>
-                                        <?php
-                                  
-                                        $options = array(
-                                            'select'       => 'Select a framework',
-                                            '.NET'         => '.NET',
-                                            'Codeigniter'  => 'Codeigniter',
-                                            'Laravel'      => 'Laravel'
-                                        );
-                                  
-                                        echo form_dropdown('framework', $options);
-                                        ?>
-                                        <font color="#ff0000"><?php echo form_error('framework'); ?></font>
-                                </div>
+                                   
+                                        <font color="#ff0000"><?php echo form_error('project');?></font>
+                                    </div>
                                 
-                                <div class="form-group">
-                                    <label>Client</label><br/>
-                                        <?php echo form_input('client', set_value('client',''));?>
-                                        <font color="#ff0000"><?php echo form_error('client');?></font>
-                                </div> 
+                                    <div class="form-group">
+                                        <?php  
+                                            if (count($team_member) > 0) { 
+                                        ?>
+                                        
+                                        <label>Scrum Master</label><br/>
                                   
-                                 
+                                        <?php  
+                                             
+                                                $sm = array("Select Scrum Master");
+                                                foreach($team as $p){
+                                                    $sm[$p->user_id]=$p->user_name;
+                                                }
+                                                echo form_dropdown('scrum', $sm, $member['scrum_master']);
+                                        ?>
+                                        <font color="#ff0000"><?php echo form_error('scrum');?></font>
+                                    </div>
+                                
+                                <table class="table table-bordered table-hover">
+                                    
+                                    <thead>
+                                        <tr>
+                                        
+                                            <th>Full Name</th>
+                                            <th>User Name</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <?php 
+                                            $team_id = $this->uri->segment(3);
+                                        
+                                            foreach($team_member as $t_mem): 
+                                            $user_id = $t_mem['user_id'];
+                                        
+                                            echo form_open("createteam/create/$team_id/$user_id",['method'=>'post']);
+                                            
+                                        ?>
+                                        
+                                                <tr>
+                                        
+                                                    <td><?php echo $t_mem['full_name']?></td>
+                                                    <td><?php echo $t_mem['user_name']?></td>
+                                    
+                                                    <td><button>
+                                                        <?php 
+                                                            echo anchor('team/remove/'.$team_id.'/'.$user_id.'/'.(int)$project_id['project_id'], 'Remove', array('id'=>"anchorTag",'onClick' => "return confirm('Are you sure you want to delete?')"));
+                                                        ?>
+                                                        </button></td>
+                                                </tr>
+                                    
+                                        <?php 
+                                            endforeach; }
+                                            echo form_close();
+                                        ?>
+                                    </tbody>
+                                </table>
+                                
+                                    <button type="submit" class="btn btn-default" onclick="window.location.href='<?php echo base_url()?>CreateTeam/edit_team/<?php echo $team_id?>'">Done</button>
+          
+                                    <input type="button" class="btn btn-primary"name="btnBack" id="btnBack" value="Back" onclick="window.location.href='<?php echo base_url() ?>CreateTeam'" />
+                                     
+                                    <?php echo form_close();?>
+                                    
                             </div>
-                                
                     </div>
-                                
-                    <?php echo form_submit('create','Create'); ?>
-                        
-                    <input type="reset" class="btn btn-primary"name="btnReset" id="btnReset" value="Reset" onclick="window.location.href='<?php echo base_url() ?>createproject'" />
-                                
-                    <?php echo form_close(); ?>
-                              
-                                
-                                
+                    
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Assign Members</div>
+                            <div class="panel-body">                           
+                                <div class="form-group">
+                                  
+                                    <?php if (count($developer) > 0) { ?>
+                                    
+                                    <table class="table table-bordered table-hover">
+                                        
+                                        <thead>
+                                            <tr>
+                                                <th>User ID</th>
+                                                <th>Full Name</th>
+                                                <th>User Name</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                    
+                                            <?php 
+                                                foreach($developer as $dev): 
+                                                $user_id = $dev['user_id'];
+                                    
+                                            ?>
+                                    
+                                                <tr>
+                                                    <td><?php echo $dev['user_id']?></td>
+                                                    <td><?php echo $dev['full_name']?></td>
+                                                    <td><?php echo $dev['user_name']?></td>
+                                        
+                                                    <td><button type="submit" class="btn btn-default" onclick="window.location.href='<?php echo base_url()?>team/add/<?php echo $team_id?>/<?php echo $user_id?>'">Add</button></td>
+                                                </tr>
+                                    
+                                            <?php endforeach; }?>
+                                    
+                                        </tbody>
+                                    </table>
+                                  
+                                </div>
+                            </div>
+                    </div>
                 </div>
-            </div>
-        </div>
                 
-        <div class="row">
-                  <!-- /#page-wrapper -->
-        <div></div>
-        
-        </div>
+                <div class="row">
+                </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -319,3 +393,5 @@
 </body>
 
 </html>
+
+

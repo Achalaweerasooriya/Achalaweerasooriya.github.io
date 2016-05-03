@@ -22,8 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="<?php echo base_url(); ?>_include/Dashboard/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-    <!--<link href=”views/admin/css/datepicker.css” rel=”stylesheet”>-->
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,12 +30,16 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
+<style>
+    #anchorTag{color:#000;}
+</style>
+
 </head>
 
 <body>
+
     <div id="wrapper">
-        
-        
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -190,13 +193,17 @@
                     </li>
                     
                     <li>
-                        <a href="<?php echo base_url(''); ?>createTeam"><i class="fa fa-fw fa-table"></i> Create Team</a>
+                        <a href="<?php echo base_url(''); ?>CreateTeam"><i class="fa fa-fw fa-table"></i> Create Team</a>
                     </li>
                     <li>
                         <a href="Create team.html"><i class="fa fa-fw fa-table"></i> Profile</a>
                     </li>
+               
                 </ul>
+                
+                
             </div>
+            
             <!-- /.navbar-collapse -->
         </nav>
 
@@ -210,100 +217,81 @@
                     </div>
                 </div>
                 <!-- /.row -->
-                
-                <!-- /.row -->
-                <div class="col-sm-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">Create Project</div>
-                            <div class="panel-body">                                
-                              
-                                <?php echo form_open('CreateProject/add_project',['method'=>'post']); ?>
-                                
-                                <div class="form-group">
-                                    <label>Project Name</label><br/>
-                                        <?php echo form_input('name', set_value('name','')); ?>
-                                        <font color="#ff0000"><?php echo form_error('name'); ?></font>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Start Date</label><br/>
-                                        <input  type="date"  id="start_date"  name="start_date">
-                                        <font color="#ff0000"><?php echo form_error('start_date'); ?></font>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Deadline</label><br/>
-                                        <input  type="date"  id="deadline"  name="deadline">
-                                        <font color="#ff0000"><?php echo form_error('deadline'); ?></font>
-                                </div>
-                               
-                                <div class="form-group">
-                                    <label>Description</label>
-                                        <?php echo form_textarea('description', set_value('description','')); ?>
-                                        <font color="#ff0000"><?php echo form_error('description'); ?></font>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Languages</label><br/>
-                                        <?php
-                                  
-                                            $options = array(
-                                                'select'    => 'Select a language',
-                                                'C#'        => 'C#',
-                                                'Java'      => 'Java',
-                                                'PHP'       => 'PHP' 
-                                            );
-                                  
-                                            echo form_dropdown('language', $options);
-                                        ?>
-                                        <font color="#ff0000"><?php echo form_error('language'); ?></font>
-                                </div>
-                                                                  
-                                <div class="form-group">
-                                    <label>Framework</label><br/>
-                                        <?php
-                                  
-                                        $options = array(
-                                            'select'       => 'Select a framework',
-                                            '.NET'         => '.NET',
-                                            'Codeigniter'  => 'Codeigniter',
-                                            'Laravel'      => 'Laravel'
-                                        );
-                                  
-                                        echo form_dropdown('framework', $options);
-                                        ?>
-                                        <font color="#ff0000"><?php echo form_error('framework'); ?></font>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Client</label><br/>
-                                        <?php echo form_input('client', set_value('client',''));?>
-                                        <font color="#ff0000"><?php echo form_error('client');?></font>
-                                </div> 
-                                  
-                                 
-                            </div>
-                                
-                    </div>
-                                
-                    <?php echo form_submit('create','Create'); ?>
+
+                <div class="row">
+                    <div class="col-lg-12">
                         
-                    <input type="reset" class="btn btn-primary"name="btnReset" id="btnReset" value="Reset" onclick="window.location.href='<?php echo base_url() ?>createproject'" />
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <!-- /.row -->
+                <div class="col-sm-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Create Team</div>
+                            <div class="panel-body">
                                 
-                    <?php echo form_close(); ?>
+                                  <?php echo form_open('CreateTeam/create_team',['method'=>'post']);?>
+                                
+                                <div class="form-group">
+                                    <label>Team Name</label><br/>
+                                    <?php echo form_input('name', set_value('name',''));?>
+                                    <font color="#ff0000"><?php echo form_error('name');?></font>
+                                </div>
+                                
+                                    <button type="submit" class="btn btn-default" onclick="window.location.href='<?php echo base_url() ?>CreateTeam'">Create</button>
+                                    <button type="reset" class="btn btn-default" onclick="window.location.href='<?php echo base_url() ?>CreateTeam'">Reset</button>
+                                            
+                                 <?php echo form_close(); ?>
+                          
+                            </div>
+                    </div>
+                        
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Team ID</th>
+                                    <th>Team Name</th>
+                                    <th></th>
+                                    <th></th>
+                                    
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
                               
                                 
+                                <?php foreach($teams as $team): 
+                                      $team_id = $team['team_id'];
+                                ?>
+                                    
+                                <tr>
+                                    <td><?php echo $team['team_id']?></td>
+                                    <td><?php echo $team['name']?></td>
+                                    
+
+                                    <td><button type="submit" class="btn btn-default" onclick="window.location.href='<?php echo base_url()?>team/view/<?php echo $team_id?>'">Add Member & Edit</button></td>
+                                    <td><button>
+                                        <?php 
+                                            echo anchor('createteam/remove_team/'.$team_id, 'Remove', array('id'=>"anchorTag",'onClick' => "return confirm('Are you sure you want to delete?')"));
+                                        ?>
+                                        </button></td>
+                                </tr>
                                 
+                              <?php endforeach; ?>
+
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                     
+                     
                 </div>
-            </div>
-        </div>
-                
-        <div class="row">
+                <div class="row">
                   <!-- /#page-wrapper -->
-        <div></div>
-        
-        </div>
-    <!-- /#wrapper -->
+                </div>
+                <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="<?php echo base_url(); ?>_include/Dashboard/js/jquery.js"></script>

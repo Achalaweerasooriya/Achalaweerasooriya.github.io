@@ -81,8 +81,8 @@ class MembershipModel extends CI_Model
     function getdes($user)
     {
         $this->db->select('designation');
-        $this->db->where('user_name',$user);
         $this->db->from('user');
+        $this->db->where('user_name',$user);
         $query = $this->db->get();
         $q1=$query->row();
         return $q1->designation;

@@ -9,6 +9,7 @@ class DashBoardController extends CI_Controller
     //Load dashboard of the user
     function index($name)
     {
+        $name=$this->session->userdata('username');
        $this->load->view('DashboardBody');
         $this->DashBoardMainView($name);
     }
@@ -35,6 +36,10 @@ class DashBoardController extends CI_Controller
          else if($des=='scrum')
         {
            $this->load->view('ScrumMasterNavigation');  
+        }
+        else if($des=='client')
+        {
+            $this->load->view('ClientNavigation');  
         }
         else 
         {

@@ -11,7 +11,7 @@
 
     <title>SUPREME</title>
 
-    <!-- Bootstrap Core CSS -->
+   <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>_include/Dashboard/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -22,21 +22,20 @@
 
     <!-- Custom Fonts -->
     <link href="<?php echo base_url(); ?>_include/Dashboard/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-    <!--<link href=”views/admin/css/datepicker.css” rel=”stylesheet”>-->
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
 </head>
 
 <body>
+    <div class="row" id="error-container"></div>
     <div id="wrapper">
-        
-        
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -154,47 +153,28 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="<?php echo base_url(''); ?>DashBoardController/redirectToPages/home"><i class="fa fa-fw fa-dashboard"></i> Home</a>
+                        <a href="<?php echo base_url(''); ?>Client"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(''); ?>DashBoardController/PMViewProjects"><i class="fa fa-fw fa-bar-chart-o"></i> On-Going Projects</a>
+                        <a href="projects.html"><i class="fa fa-fw fa-bar-chart-o"></i> BackLog</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-table"></i> Projects BackLog</a>
+                        <a href="#"><i class="fa fa-fw fa-table"></i> Schedule</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-edit"></i>Developer Teams</a></li>
-                
+                        <a href="#"><i class="fa fa-fw fa-edit"></i>Contact Project Manager</a></li>
                     <li>
-                        <a href="<?php echo base_url(''); ?>createproject"><i class="fa fa-fw fa-wrench"></i> Create Project</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Project Profile</a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Project Documents</a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">Client Details</a>
+                                <a href="#">System Requirement Spesification</a>
                             </li>
                             <li>
-                                <a href="#">View Project</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(''); ?>AddSprint_Controller/index">Add New Sprint</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(''); ?>SearchTask_Controller/index">Search Tasks by Sprint Id</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(''); ?>SearchEmp_Controller/index">Search Tasks by User Id</a>
+                                <a href="#">Final Documentation</a>
                             </li>
                         </ul>
                     </li>
-                    
-                    <li>
-                        <a href="<?php echo base_url(''); ?>createTeam"><i class="fa fa-fw fa-table"></i> Create Team</a>
-                    </li>
-                    <li>
-                        <a href="Create team.html"><i class="fa fa-fw fa-table"></i> Profile</a>
-                    </li>
+               
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -211,99 +191,168 @@
                 </div>
                 <!-- /.row -->
                 
-                <!-- /.row -->
+               
+            <div class="row">    
                 <div class="col-sm-4">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">Create Project</div>
-                            <div class="panel-body">                                
-                              
-                                <?php echo form_open('CreateProject/add_project',['method'=>'post']); ?>
+                        <div class="panel-heading">Project</div>
+                            <div class="panel-body">
+                                
+                                <?php $project_id = $pro['project_id']; ?>
                                 
                                 <div class="form-group">
-                                    <label>Project Name</label><br/>
-                                        <?php echo form_input('name', set_value('name','')); ?>
-                                        <font color="#ff0000"><?php echo form_error('name'); ?></font>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Start Date</label><br/>
-                                        <input  type="date"  id="start_date"  name="start_date">
-                                        <font color="#ff0000"><?php echo form_error('start_date'); ?></font>
+                                    <label class="labels">Project ID  </label>
+                                    <label><?php echo ": ".$project_id ?></label><br/>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Deadline</label><br/>
-                                        <input  type="date"  id="deadline"  name="deadline">
-                                        <font color="#ff0000"><?php echo form_error('deadline'); ?></font>
-                                </div>
-                               
-                                <div class="form-group">
-                                    <label>Description</label>
-                                        <?php echo form_textarea('description', set_value('description','')); ?>
-                                        <font color="#ff0000"><?php echo form_error('description'); ?></font>
+                                    <label class="labels">Project Name  </label>
+                                    <?php echo ": ".$pro['name']; ?>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Languages</label><br/>
-                                        <?php
-                                  
-                                            $options = array(
-                                                'select'    => 'Select a language',
-                                                'C#'        => 'C#',
-                                                'Java'      => 'Java',
-                                                'PHP'       => 'PHP' 
-                                            );
-                                  
-                                            echo form_dropdown('language', $options);
-                                        ?>
-                                        <font color="#ff0000"><?php echo form_error('language'); ?></font>
-                                </div>
-                                                                  
-                                <div class="form-group">
-                                    <label>Framework</label><br/>
-                                        <?php
-                                  
-                                        $options = array(
-                                            'select'       => 'Select a framework',
-                                            '.NET'         => '.NET',
-                                            'Codeigniter'  => 'Codeigniter',
-                                            'Laravel'      => 'Laravel'
-                                        );
-                                  
-                                        echo form_dropdown('framework', $options);
-                                        ?>
-                                        <font color="#ff0000"><?php echo form_error('framework'); ?></font>
+                                    <label class="labels">Start Date  </label>
+                                    <?php echo ": ".$pro['start_date']; ?>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Client</label><br/>
-                                        <?php echo form_input('client', set_value('client',''));?>
-                                        <font color="#ff0000"><?php echo form_error('client');?></font>
-                                </div> 
-                                  
-                                 
+                                    <label class="labels">Deadline  </label>
+                                    <?php echo ": ".$pro['deadline']; ?>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="labels">Status  </label>
+                                    <?php echo ": ".$pro['status']; ?>
+                                </div>
+                                                                 
+                                <div class="form-group">
+                                    <label class="labels">Description  </label>
+                                    <?php echo ": ".$pro['description']; ?>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="labels">Languages  </label>
+                                    <?php echo ": ".$pro['language']; ?>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="labels">Framework  </label>
+                                    <?php echo ": ".$pro['framework']; ?>
+                                </div>
                             </div>
-                                
                     </div>
-                                
-                    <?php echo form_submit('create','Create'); ?>
-                        
-                    <input type="reset" class="btn btn-primary"name="btnReset" id="btnReset" value="Reset" onclick="window.location.href='<?php echo base_url() ?>createproject'" />
-                                
-                    <?php echo form_close(); ?>
-                              
-                                
-                                
                 </div>
+                
+                <div class="col-sm-7">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Project Progress</div>
+                            <div class="panel-body" id="progress">
+                            
+                                <div class="progress">
+                                    <div id="progress-bar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"  style="width:<?php echo $pro['project_progress']?>%"><b><font color="black" size="3"><?php echo $pro['project_progress']?>%</b>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                
+                <?php 
+                    if ($pro['team_id'] != 0) {
+                ?>
+                
+                <div class="col-sm-7">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Team</div>
+                            <div class="panel-body" >
+                                <div class="form-group">
+                                    
+                                    <style >
+                                        .labels{width:150px;} 
+                                    </style>
+                                               
+                                    <label class="labels">Team ID  </label>
+                                    <label><?php echo ": ".$pro['team_id']; ?></label><br/>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="labels">Team Name  </label>
+                                    <?php echo ": ".$member['name']; ?>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="labels">No Of Members  </label>
+                                    <label><?php echo ": ".$member['no_of_members']; ?></label><br/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="labels">Project Manager  </label>
+
+                                    <?php  
+
+                                        echo ": ".$project_manager['user_name']
+                                    ?>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="labels">Scrum Master  </label>
+
+                                    <?php  
+
+                                        echo ": ".$scrum_master['user_name'];
+                                    ?>
+
+                                </div>
+                                
+                                <label>Members</label><br/>
+                                <table class="table table-bordered table-hover">
+                                    
+                                    <thead>
+                                        <tr>
+                                        
+                                            <th>Full Name</th>
+                                            <th>User Name</th>
+                                          
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        
+                                        <?php 
+                                            $team_id = $pro['team_id'];
+                                            foreach($team_member as $t_mem): 
+                                            $user_id = $t_mem['user_id'];
+                                        ?>
+                                        
+                                            <tr>
+
+                                                <td><?php echo $t_mem['full_name'];?></td>
+                                                <td><?php echo $t_mem['user_name'];?></td>
+
+                                            </tr>  
+                                        <?php 
+                                            endforeach;
+                                            echo form_close();
+                                        ?>
+                                
+                                    </tbody>
+                                </table>
+                                    
+                                                
+                                
+                            </div>
+                    </div>
+                </div> 
+                
+                <?php 
+                   }
+                ?>
+                        
+            </div>
+                
             </div>
         </div>
-                
-        <div class="row">
-                  <!-- /#page-wrapper -->
-        <div></div>
-        
-        </div>
-    <!-- /#wrapper -->
+    </div>
 
     <!-- jQuery -->
     <script src="<?php echo base_url(); ?>_include/Dashboard/js/jquery.js"></script>
