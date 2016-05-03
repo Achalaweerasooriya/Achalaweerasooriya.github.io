@@ -7,6 +7,7 @@
                     <li>
                         <a href="<?php echo base_url(''); ?>DashBoardController/ManagerProjects"><i class="fa fa-fw fa-bar-chart-o"></i> Projects</a>
                     </li>
+                    
                     <li>
                         <a href="#"><i class="fa fa-fw fa-table"></i> Schedule</a>
                     </li>
