@@ -157,43 +157,33 @@
                         <a href="<?php echo base_url(''); ?>DashBoardController/redirectToPages/home"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(''); ?>DashBoardController/PMViewProjects"><i class="fa fa-fw fa-bar-chart-o"></i> On-Going Projects</a>
+                        <a href="<?php echo base_url(''); ?>DashBoardController/ManagerProjects"><i class="fa fa-fw fa-bar-chart-o"></i> Projects</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-table"></i> Projects BackLog</a>
+                        <a href="#"><i class="fa fa-fw fa-table"></i> Schedule</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-edit"></i>Developer Teams</a></li>
+                        <a href="#"><i class="fa fa-fw fa-edit"></i>Reports</a></li>
                 
                     <li>
-                        <a href="<?php echo base_url(''); ?>createproject"><i class="fa fa-fw fa-wrench"></i> Create Project</a>
+                        <a href="#"><i class="fa fa-fw fa-wrench"></i> Calander</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Project Profile</a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Company Profile</a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">Client Details</a>
+                                <a href="#">Dropdown Item</a>
                             </li>
                             <li>
-                                <a href="#">View Project</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(''); ?>AddSprint_Controller/index">Add New Sprint</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(''); ?>SearchTask_Controller/index">Search Tasks by Sprint Id</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(''); ?>SearchEmp_Controller/index">Search Tasks by User Id</a>
+                                <a href="#">Dropdown Item</a>
                             </li>
                         </ul>
                     </li>
-                    
                     <li>
-                        <a href="<?php echo base_url(''); ?>createTeam"><i class="fa fa-fw fa-table"></i> Create Team</a>
+                        <a href="<?php echo base_url(''); ?>CreateProject"><i class="fa fa-fw fa-wrench"></i>Create Project</a>
                     </li>
                     <li>
-                        <a href="Create team.html"><i class="fa fa-fw fa-table"></i> Profile</a>
+                        <a href="<?php echo base_url(''); ?>ManageUser_Controller/view_users"><i class="fa fa-fw fa-table"></i> View Users</a>
                     </li>
                 </ul>
             </div>
@@ -279,8 +269,23 @@
                                     <label>Client</label><br/>
                                         <?php echo form_input('client', set_value('client',''));?>
                                         <font color="#ff0000"><?php echo form_error('client');?></font>
-                                </div> 
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Project Manager</label><br/>
                                   
+                                        <?php  
+                                             
+                                            $proj = array(0=>"Select Project Manager");
+                                            foreach($project_manager as $pm){
+                                                $proj[$pm->user_id]=$pm->user_name;
+                                            }
+                                            echo form_dropdown('project_manager', $proj);
+                                            
+                                        ?>
+                                   
+                                        <font color="#ff0000"><?php echo form_error('project_manager');?></font>
+                                </div>  
                                  
                             </div>
                                 
