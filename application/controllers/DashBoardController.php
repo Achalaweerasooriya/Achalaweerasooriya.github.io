@@ -9,6 +9,7 @@ class DashBoardController extends CI_Controller
     //Load dashboard of the user
     function index($name)
     {
+        $name=$this->session->userdata('username');
        $this->load->view('DashboardBody');
         $this->DashBoardMainView($name);
     }
