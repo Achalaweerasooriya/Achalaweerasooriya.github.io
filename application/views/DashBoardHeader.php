@@ -141,7 +141,7 @@
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> New Message</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="<?php echo base_url();?>DashBoardController/userSettings"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>

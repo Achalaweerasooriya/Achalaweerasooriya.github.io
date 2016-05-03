@@ -87,4 +87,8 @@ class MembershipModel extends CI_Model
         $q1=$query->row();
         return $q1->designation;
     }
+	
+	
+
+	
 }
