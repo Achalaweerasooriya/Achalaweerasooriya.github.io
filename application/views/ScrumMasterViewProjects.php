@@ -26,6 +26,7 @@
 								<td><?php echo $row['description'];?></td>
 								<td><?php echo $row['language'];?></td>
 								<td><?php echo $row['framework'];?></td>
+                                                                <td><a href="#" style="color: #000000;"><input type="button" value="Edit Project"/></a></td>
 							</tr>
 						<?php endforeach; ?>
 						</tbody>
