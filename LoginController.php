@@ -1,24 +1,17 @@
 <?php
 class LoginController extends CI_Controller{
-	    public function __construct()
-       {
-            parent::__construct();
-				
-       }
-	
-public function index(){
-	$this->load->helper('form');
+function index(){
     $this->load->view('header');
     $data['validate']="";
     $this->load->view('loginform',$data);
- //  $this->load->view('footer');
+   $this->load->view('footer');
 }
 
-public function SignUp(){
+function SignUp(){
     $this->load->view('SignUp');
 }
 
-public function Register(){
+function Register(){
     $this->load->library('form_validation');
     $this->load->helper(array('form', 'url'));
 
@@ -46,7 +39,7 @@ public function Register(){
 }
 
 //custom callback function
-public function check_mail_Exists($email){
+function check_mail_Exists($email){
     $this->load->model('MembershipModel');
     $email_available=$this->model->check_mail_Exists($email);
     if($email_available){
@@ -56,7 +49,7 @@ public function check_mail_Exists($email){
     }
 }
 
-public function check_user_Exists($email){
+function check_user_Exists($email){
     $this->load->model('MembershipModel');
     $username_available=$this->model->check_user_Exists($email);
     if($username_available){
@@ -66,7 +59,7 @@ public function check_user_Exists($email){
     }
 }
 
-public function validate(){
+function validate(){
 
     $this->load->model('MembershipModel');
         $user=$this->input->post('user_name');

@@ -8,7 +8,7 @@
                         <a href="<?php echo base_url(''); ?>DashBoardController/PMViewProjects"><i class="fa fa-fw fa-bar-chart-o"></i> On-Going Projects</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-table"></i> Projects BackLog</a>
+                        <a href="<?php echo base_url(''); ?>projectManagerTasks/ViewBacklog""><i class="fa fa-fw fa-table"></i> Projects BackLog</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-fw fa-edit"></i>Developer Teams</a></li>
@@ -16,6 +16,9 @@
                     <li>
                         <a href="#"><i class="fa fa-fw fa-wrench"></i>Add New Project</a>
                     </li>
+					
+					
+
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Project Profile</a>
                         <ul id="demo" class="collapse">
@@ -25,8 +28,13 @@
                             <li>
                                 <a href="#">View Project</a>
                             </li>
+							<li>
+								<a href="<?php echo base_url();?>projectManagerTasks/addU">Add User Stories To Projects</a>
+								</li>
                         </ul>
                     </li>
+					
+					
                     <li>
                         <a href="Create project.html"><i class="fa fa-fw fa-bar-chart-o"></i>Create Team </a>
                     </li>

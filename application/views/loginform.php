@@ -93,7 +93,8 @@
         <div class="row">
         	<div class="span12">
         	  <h1 class="page-header">Login <small>Get complete control of your project</small> </h1>
-              <form name="form1" method="post" action="<?php echo base_url();?>LoginController/validate">
+			  <?php echo form_open("LoginController/validate"); ?>
+           
                 <p>  <?php echo $validate ?>
                     <label for="tun">User Name</label>
                     <input class="form-control"input type="text" name="user_name"  placeholder="Enter User Name" style="width:50%">
@@ -104,9 +105,10 @@
                 </p>
                 <table width="269" height="152"  cellspacing="50px">
                   <tr>
-                    <th width="50" height="50"><a href="<?php echo base_url();?>LoginController/validate"> <button type="submit" class="btn btn-lg btn-primary">Login</button></a>
+                    <th width="50" height="50">
+					<?php echo form_submit(array('id' => 'submit', 'value' => 'Submit','name'=>'submit')); ?>
                     </th>
-                   <th width="58">  <a href="<?php echo base_url();?>LoginController/SignUp"><button type="button" class="btn btn-lg btn-primary">Sign Up</button></a>
+                   <th width="58">  <a href="<?php echo base_url('');?>LoginController/SignUp"><button type="button" class="btn btn-lg btn-primary">Sign Up</button></a>
                     </th>
                   </tr>
                 </table>

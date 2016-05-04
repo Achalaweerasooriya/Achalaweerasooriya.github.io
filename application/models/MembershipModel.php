@@ -16,7 +16,7 @@ class MembershipModel extends CI_Model{
         }
     }
     
-    function create_member(){
+    function create_member(){  
         $username=$this->input->post('user_name');
         
         $new_member=array(
@@ -32,7 +32,7 @@ class MembershipModel extends CI_Model{
         return $insert;
     }
     
-    function check_mail_Exists($email){
+    function check_mail_Exists($email){  //check the email exists
         $this->db->where('e-mail',$email);
         $result=$this->db->get('user');
         
@@ -54,7 +54,7 @@ class MembershipModel extends CI_Model{
         }
     }
     
-    function getdes($user){
+    function getdes($user){ //get the destination
         $this->db->select('designation');
         $this->db->where('user_name',$user);
         $this->db->from('user');
@@ -62,4 +62,8 @@ class MembershipModel extends CI_Model{
         $q1=$query->row();
         return $q1->designation;
     }
+	
+	
+
+	
 }
