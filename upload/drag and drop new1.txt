@@ -1,0 +1,42 @@
+ <div class="form-group">
+                                     <div class="form-group">
+                                
+                              <form method="POST" action="add_file">
+                                  <?php echo form_open('add_file');?>
+								  
+                                  <?php 
+                                  echo "";
+                                  echo $message;
+                                  echo "";
+                                  ?>
+								  
+								  <div id="content">
+		<div id="my-dropzone" class="dropzone">
+			<div class="dz-message">
+                            <form>
+				<h3>Drop files here</h3> or <strong>click</strong> to upload
+                                </form>
+			</div>
+		</div>
+	</div>
+                                  
+                               
+                                   
+                               
+                                
+                                  
+                              
+                                
+                              
+                                
+                                <?php 
+                                    
+                                echo form_submit('create','Create');
+                                echo form_reset('reset','Reset');
+                              
+                                echo form_close();
+                                
+                                ?>
+                              </form>
+                            </div>
+                           
