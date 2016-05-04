@@ -8,7 +8,7 @@
                         <a href="<?php echo base_url(''); ?>DashBoardController/PMViewProjects"><i class="fa fa-fw fa-bar-chart-o"></i> On-Going Projects</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-table"></i> Projects BackLog</a>
+                        <a href="<?php echo base_url(''); ?>projectManagerTasks/ViewBacklog""><i class="fa fa-fw fa-table"></i> Projects BackLog</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-fw fa-edit"></i>Developer Teams</a></li>
@@ -27,7 +27,7 @@
                                 <a href="#">View Project</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url(''); ?>AddSprint_Controller/index">Add New Sprint</a>
+								<a href="<?php echo base_url();?>projectManagerTasks/addU">Add User Stories To Projects</a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url(''); ?>SearchTask_Controller/index">Search Tasks by Sprint Id</a>
